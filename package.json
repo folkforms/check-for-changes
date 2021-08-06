@@ -1,0 +1,27 @@
+{
+  "name": "check-for-changes",
+  "version": "0.0.0",
+  "description": "Checks a branch for changes so we can avoid building things that don't matter.",
+  "bin": {
+    "check-for-changes": "./check-for-changes-cli.js"
+  },
+  "scripts": {
+    "check-for-changes": "node check-for-changes-cli.js",
+    "test": "jest",
+    "test-repo": "node createTestGitRepo.run.js",
+    "release": "npm-release"
+  },
+  "author": "folkforms",
+  "license": "MIT",
+  "repository": "xyz",
+  "dependencies": {
+    "@folkforms/npm-release": "^0.0.22",
+    "commander": "^8.1.0",
+    "shelljs": "^0.8.4"
+  },
+  "devDependencies": {
+    "@folkforms/line-endings": "^0.0.9",
+    "dummy-shells": "^0.0.7",
+    "jest": "^27.0.6"
+  }
+}

@@ -1,6 +1,6 @@
 const shelljs = require("shelljs");
 
-const createTestGitRepo = (folder, mainBranchChanges = 1, featureBranchChanges = 1) => {
+const createTestGitRepo = (folder, type, mainBranchChanges = 1, featureBranchChanges = 1) => {
   const cd = process.cwd();
   shelljs.rm("-rf", folder);
   shelljs.mkdir("-p", folder);
@@ -15,7 +15,12 @@ const createTestGitRepo = (folder, mainBranchChanges = 1, featureBranchChanges =
   for(let i = 0; i < mainBranchChanges; i++) {
     shelljs.exec(`echo m${i}>m${i}.txt && git add m${i}.txt && git commit -qm "Main branch commit ${i}"`);
   }
-  shelljs.exec("git merge -q feature main")
+  if(type === "merge-commit") {
+    shelljs.exec("git merge -q feature main")
+    shelljs.exec("git checkout -q main");
+  } else {
+    shelljs.exec("git checkout -q feature");
+  }
   shelljs.cd(cd);
 }
 

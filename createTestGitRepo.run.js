@@ -1,2 +1,2 @@
 const createTestGitRepo = require("./createTestGitRepo");
-createTestGitRepo("temp", 2, 4);
+createTestGitRepo("temp", "merge-commit", 2, 4);

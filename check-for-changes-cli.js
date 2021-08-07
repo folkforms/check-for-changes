@@ -7,8 +7,8 @@ const { Command } = require('commander');
 
 const program = new Command();
 program
-  .requiredOption("-c, --command <command>", "Command to run if the check is successful. Use quotes if the command contains multiple tokens.")
-  .option("--main-branch", "Override default 'main' branch name for main branch")
+  .requiredOption("-c, --command <command>", "Command to run if the check is successful. Use quotes if the command contains spaces.")
+  .option("--main-branch", "Override default 'main' branch name")
   .option("-n, --dry-run", "Dry run")
   .parse();
 

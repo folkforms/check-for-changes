@@ -9,40 +9,34 @@ afterEach(() => {
   shelljs.rm("-rf", "temp");
 });
 
-test("when we call 'checkForChanges --merge' with no other arguments it fails", () => {
+test("when we call 'checkForChanges' with no arguments it fails", () => {
   const tokens = [];
   const exitCode = checkForChanges(tokens, shelljs);
   expect(exitCode).toEqual(1);
 });
 
-test("--merge returns 0 when we are on main and the feature branch contains the changes we want", () => {
+test("it returns 0 when we are on main and the feature branch contains the changes we want", () => {
   createTestGitRepo("temp", "merge-commit", 1, 2);
   const tokens = [ "f1.txt" ];
   const exitCode = checkForChanges(tokens, shelljs, { testFolder: "temp" });
   expect(exitCode).toEqual(0);
 });
 
-test("--merge returns 1 when we are on main and the feature branch does not contain the changes we want", () => {
+test("it returns 1 when we are on main and the feature branch does not contain the changes we want", () => {
   createTestGitRepo("temp", "merge-commit", 1, 2);
   const tokens = [ "m1.txt" ];
   const exitCode = checkForChanges(tokens, shelljs, { testFolder: "temp" });
   expect(exitCode).toEqual(1);
 });
 
-test("when we call 'checkForChanges --branch' with no other arguments it fails", () => {
-  const tokens = [];
-  const exitCode = checkForChanges(tokens, shelljs);
-  expect(exitCode).toEqual(1);
-});
-
-test("--branch returns 0 when the feature branch contains the changes we want", () => {
+test("it returns 0 when we are on the feature branch and it contains the changes we want", () => {
   createTestGitRepo("temp", "branch", 1, 2);
   const tokens = [ "f1.txt" ];
   const exitCode = checkForChanges(tokens, shelljs, { testFolder: "temp" });
   expect(exitCode).toEqual(0);
 });
 
-test("--branch returns 1 when the feature branch does not contain the changes we want", () => {
+test("it returns 1 when we are on the feature branch and it does not contain the changes we want", () => {
   createTestGitRepo("temp", "branch", 1, 2);
   const tokens = [ "m1.txt" ];
   const exitCode = checkForChanges(tokens, shelljs, { testFolder: "temp" });

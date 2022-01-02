@@ -24,4 +24,4 @@ if(r === 0) {
   console.log(`No changes beginning with '${tokens}' found, skipping '${command}'`);
 }
 
-return 0;
+process.exit(0);
